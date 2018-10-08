@@ -1,3 +1,6 @@
+# The git module for nigiri uses snippets from an awesome article by Josh Dick:
+# https://joshdick.net/2017/06/08/my_git_prompt_for_zsh_revisited.html
+
 function nigiri_module::git() {
   ! git rev-parse --is-inside-work-tree > /dev/null 2>&1 && return
 
