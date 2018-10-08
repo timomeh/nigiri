@@ -42,14 +42,37 @@ NIGIRI_PROMPT_MODULES=(
 # Add modules
 
 nigiri consists of modules which compose the shell prompt. Each module is a
-function called `nigiri_module::my_module()`. The output of this function
-(using `echo`) is added to the prompt.
+function, and the output of this function (using `echo`) will be added to the
+prompt.
+
+1. Create a new zsh file for your module, e.g. `ohai.zsh`. Define the
+   function `nigiri_module::ohai` inside it:
+
+   ```sh
+   function nigiri_module::ohai() {
+     echo -n "ohai marc."
+   }
+   ```
+
+2. `source` the file before you load nigiri:
+
+   ```sh
+   source ohai.zsh
+   ```
+
+3. Add the module to `NIGIRI_PROMPT_MODULES`:
+
+   ```sh
+   NIGIRI_PROMPT_MODULES=(
+     # ...
+     ohai
+     # ...
+   )
+   ```
 
 Check out [`exit_status`](modules/exit_status.zsh) for a simple module example
-or [`async_example`](modules/async_example.zsh) for a module utilizing async functions.
-
-You can `source` your module before loading nigiri and add your module to `NIGIRI_PROMPT_MODULES`,
-to add it to your prompt.
+or [`async_example`](modules/async_example.zsh) for a module utilizing async
+functions.
 
 # Attributions
 
