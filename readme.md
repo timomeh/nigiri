@@ -2,33 +2,57 @@
   <img width="600" height="400" src=".github/nigiri.svg" alt="nigiri">
 </div>
 
-> nigiri is a fast, modular and customizable zsh prompt inspired by
+> nigiri is a fast, modular and customizable zsh prompt using async functions, inspired by
 > [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt/) and [pure](https://github.com/sindresorhus/pure).
 
 <div align="center">
   <img width="752" src=".github/screenshot.png" alt="screenshot">
 </div>
 
+# Table of Contents
+
+- [Install](#install)
+- [Configuration](#install)
+  - [git](#git)
+  - [node](#node)
+- [Write your own module](#write-your-own-module)
+- [Attributions](#attributions)
+- [License](#license)
+
 # Install
 
-I'm using zplug, so that's everything I know. [zsh-async](https://github.com/mafredri/zsh-async)
-is a required dependency and needs to be loaded before nigiri.
+### [antibody](https://github.com/getantibody/antibody)
 
+```sh
+antibody bundle mafredri/zsh-async
+antibody bundle timomeh/nigiri
 ```
+
+### [antigen](https://github.com/zsh-users/antigen)
+
+```sh
+antigen bundle mafredri/zsh-async
+antigen theme https://github.com/timomeh/nigiri nigiri
+```
+
+### [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+
+tdb.
+
+### [zplug](https://github.com/zplug/zplug)
+
+```sh
 zplug "mafredri/zsh-async"
 zplug "timomeh/nigiri", as:theme
 ```
 
-```
-TODO: Add more installation guides
-```
 
 # Configuration
 
 Use the variable `NIGIRI_PROMPT_MODULES` to define the order of the modules in
 your prompt. Default is:
 
-```
+```sh
 NIGIRI_PROMPT_MODULES=(
   newline
   cwd
@@ -41,7 +65,7 @@ NIGIRI_PROMPT_MODULES=(
 
 Use the variable `NIGIRI_PS2` to set the PS2. It defaults to `%F{black}⣿%f  `.
 
-## git
+## `git`
 
 | Variable | Description | Default |
 | - | - | - |
@@ -57,14 +81,14 @@ Use the variable `NIGIRI_PS2` to set the PS2. It defaults to `%F{black}⣿%f  `.
 | **`NMOD_GIT_MERGE`** | String to print while merging. | `%B%F{red}(merge)%f%b` |
 | **`NMOD_GIT_REBASE`** | String to print while rebasing. | `%B%F{red}(rebase)%f%b` |
 
-## node
+## `node`
 
 | Variable | Description | Default |
 | - | - | - |
 | **`NMOD_NODE_CMD`** | Command to run to get the current node version. | `nvm current` |
 | **`NMOD_NODE_FORMAT`** | Format of the module's output, where `NODE` will be replaced with the node version. | `%F{black}with%f %B%F{green}⬢ NODE%f%b` |
 
-# Add modules
+# Write your own module
 
 nigiri consists of modules which compose the shell prompt. Each module is a
 function, and the output of this function (using `echo`) will be added to the
@@ -95,14 +119,22 @@ prompt.
    )
    ```
 
-Check out [`exit_status`](modules/exit_status.zsh) for a simple module example
+Check out [`exit_status`](modules/exit_status.zsh) for an example of a simple module
 or [`async_example`](modules/async_example.zsh) for a module utilizing async
 functions.
+
+If you wrote a module, why not share your work with others and open a [pull request](https://github.com/timomeh/nigiri/pulls).
 
 # Attributions
 
 The sushi-emoji is part of [Noto Color Emoji from Google](https://www.google.com/get/noto/help/emoji/)
 and licensed under the [Apache License 2.0](https://github.com/googlei18n/noto-emoji/blob/master/LICENSE).
+
+nigiri is heavily inspired by [denysdovhan/spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt/)
+and [sindresorhus/pure](https://github.com/sindresorhus/pure) and wouldn't exist without
+their work.
+
+nigiri would not be possible without the awesome work of [mafredri/zsh-async](https://github.com/mafredri/zsh-async).
 
 # License
 
