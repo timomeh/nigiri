@@ -16,6 +16,7 @@
   - [cwd](#cwd)
   - [exit_status](#exit_status)
   - [git](#git)
+  - [newline](#newline)
   - [node](#node)
   - [wild_nigiri](#wild_nigiri)
 - [Write your own module](#write-your-own-module)
@@ -106,6 +107,10 @@ Use the variable `NIGIRI_PS2` to set the PS2. It defaults to `%F{black}⣿%f  `.
 | **`NMOD_GIT_CLEAN`** | String to print when working tree is clean. | `%F{green}■%f` |
 | **`NMOD_GIT_MERGE`** | String to print while merging. | `%B%F{red}(merge)%f%b` |
 | **`NMOD_GIT_REBASE`** | String to print while rebasing. | `%B%F{red}(rebase)%f%b` |
+
+## `newline`
+
+`newline` shows a line break.
 
 ## `node`
 
