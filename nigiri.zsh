@@ -11,8 +11,10 @@ if [ -z "$NIGIRI_PROMPT_MODULES" ]; then
   )
 fi
 
+[[ -z "$NIGIRI_PS2" ]] && NIGIRI_PS2="%F{black}⣿%f  "
+
 PROMPT=""
-PS2="%F{black}⣿%f  "
+PS2="$NIGIRI_PS2"
 
 nigiri::setup() {
   setopt prompt_subst
