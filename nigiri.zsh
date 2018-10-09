@@ -5,7 +5,7 @@ if [ -z "$NIGIRI_PROMPT_MODULES" ]; then
     newline
     cwd
     git
-    node
+    wild_nigiri
     newline
     exit_status
   )
@@ -21,6 +21,7 @@ nigiri::setup() {
   autoload -Uz vcs_info
   autoload -Uz async && async
   autoload -Uz add-zsh-hook
+  zmodload -i zsh/mathfunc
 
   async_init
 

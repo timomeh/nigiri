@@ -17,6 +17,7 @@
   - [exit_status](#exit_status)
   - [git](#git)
   - [node](#node)
+  - [wild_nigiri](#wild_nigiri)
 - [Write your own module](#write-your-own-module)
 - [Attributions](#attributions)
 - [License](#license)
@@ -59,11 +60,14 @@ NIGIRI_PROMPT_MODULES=(
   newline
   cwd
   git
-  node
+  # node
+  wild_nigiri
   newline
   exit_status
 )
 ```
+
+You can simply copy this into your `.zshrc` before you load nigiri, and modify it to your liking.
 
 Use the variable `NIGIRI_PS2` to set the PS2. It defaults to `%F{black}⣿%f  `.
 
@@ -111,6 +115,14 @@ Use the variable `NIGIRI_PS2` to set the PS2. It defaults to `%F{black}⣿%f  `.
 | - | - | - |
 | **`NMOD_NODE_CMD`** | Command to run to get the current node version. | `nvm current` |
 | **`NMOD_NODE_FORMAT`** | Format of the module's output, where `NODE` will be replaced with the node version. | `%F{black}with%f %B%F{green}⬢ NODE%f%b` |
+
+## `wild_nigiri`
+
+`wild_nigiri` has a 1:200 chance of showing a 🍣
+
+| Variable | Description | Default |
+| - | - | - |
+| **`NMOD_WILD_NIGIRI_CHANCE`** | Chance that a wild nigiri shows up, as percentage between 0 and 1. | `0.005` |
 
 # Write your own module
 
