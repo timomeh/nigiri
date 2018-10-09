@@ -65,6 +65,15 @@ NIGIRI_PROMPT_MODULES=(
 
 Use the variable `NIGIRI_PS2` to set the PS2. It defaults to `%F{black}⣿%f  `.
 
+## `exit_status`
+
+`exit_status` shows an indicator based on the exit code of the last command.
+
+| Variable | Description | Default |
+| - | - | - |
+| **`NMOD_EXIT_STATUS_GOOD`** | String to print on success. | `%F{green}● %f` |
+| **`NMOD_EXIT_STATUS_BAD`** | String to print on failure. | `%F{red}● %f` |
+
 ## `git`
 
 `git` shows the current branch and status of your working tree.
