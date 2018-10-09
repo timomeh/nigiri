@@ -1,14 +1,14 @@
 # This is an example to show how
 
 # store output of the module in a variable
-NIGIRI_MODULE_ASYNC_EXAMPLE=""
+NMODOUT_ASYNC_EXAMPLE=""
 
 add-zsh-hook precmd nigiri_module::async_example:precmd
 add-zsh-hook preexec nigiri_module::async_example:preexec
 
 # will get called when prompt is initially drawn and redrawn
 function nigiri_module::async_example() {
-  echo -n "$NIGIRI_MODULE_ASYNC_EXAMPLE"
+  echo -n "$NMODOUT_ASYNC_EXAMPLE"
 }
 
 # start job on precmd hook (before prompt is drawn)
@@ -18,7 +18,7 @@ function nigiri_module::async_example:precmd() {
 
 # clear module output on preexec hook (after user executed a command)
 function nigiri_module::async_example:preexec() {
-  NIGIRI_MODULE_ASYNC_EXAMPLE=""
+  NMODOUT_ASYNC_EXAMPLE=""
 }
 
 # async job
@@ -29,7 +29,7 @@ function nigiri_module::async_example:job() {
 
 # called when async job finished
 function nigiri_module::async_example:callback() {
-  NIGIRI_MODULE_ASYNC_EXAMPLE="$3" # $3 is output of job
+  NMODOUT_ASYNC_EXAMPLE="$3" # $3 is output of job
   nigiri::redraw # redraw the prompt to show the updated state.
 }
 
