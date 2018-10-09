@@ -1,6 +1,4 @@
+[[ -z "$NMOD_CWD_FORMAT" ]] && NMOD_CWD_FORMAT="%B%F{yellow}CWD %f%b"
 function nigiri_module::cwd() {
-  echo -n "%{%B%}%F{yellow}"
-  echo -n %~
-  echo -n " "
-  echo -n "%{%b%}%f"
+  echo -n "${NMOD_CWD_FORMAT//CWD/%~}"
 }

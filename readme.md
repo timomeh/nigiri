@@ -13,6 +13,8 @@
 
 - [Install](#install)
 - [Configuration](#install)
+  - [cwd](#cwd)
+  - [exit_status](#exit_status)
   - [git](#git)
   - [node](#node)
 - [Write your own module](#write-your-own-module)
@@ -64,6 +66,15 @@ NIGIRI_PROMPT_MODULES=(
 ```
 
 Use the variable `NIGIRI_PS2` to set the PS2. It defaults to `%F{black}⣿%f  `.
+
+## `cwd`
+
+`cwd` shows the current working directory.
+
+| Variable | Description | Default |
+| - | - | - |
+| **`NMOD_CWD_FORMAT`** | Format of the module's output, where `CWD` will be replaced with the current working directory. | `%B%F{yellow}CWD %f%b` |
+
 
 ## `exit_status`
 
