@@ -1,10 +1,10 @@
-NIGIRI_MODULE_NODE=""
+NMODOUT_NODE=""
 
 add-zsh-hook precmd nigiri_module::node:precmd
 add-zsh-hook preexec nigiri_module::node:preexec
 
 function nigiri_module::node() {
-  echo -n "$NIGIRI_MODULE_NODE"
+  echo -n "$NMODOUT_NODE"
 }
 
 function nigiri_module::node:precmd() {
@@ -12,9 +12,10 @@ function nigiri_module::node:precmd() {
 }
 
 function nigiri_module::node:preexec() {
-  NIGIRI_MODULE_NODE=""
+  NMODOUT_NODE=""
 }
 
+[[ -z "$NMOD_NODE_CMD" ]] && NMOD_NODE_CMD="nvm current"
 function nigiri_module::node:job() {
   local dir=$1
 
@@ -22,23 +23,20 @@ function nigiri_module::node:job() {
   # abort if not.
   ! nigiri_module::node:find_package $dir > /dev/null 2>&1 && return 1
 
-  echo -n "$(cd $dir && nvm current)"
+  echo -n "$(cd $dir && eval $NMOD_NODE_CMD)"
   return 0
 }
 
+[[ -z "$NMOD_NODE_FORMAT" ]] && NMOD_NODE_FORMAT="%F{black}with%f %B%F{green}⬢ NODE%f%b"
 function nigiri_module::node:callback() {
   local exitcode="$2"
   [[ $exitcode -ne 0 ]] && return
 
   local node_version="$3"
 
-  NIGIRI_MODULE_NODE=""
-  NIGIRI_MODULE_NODE+="%F{black}with %f"
-  NIGIRI_MODULE_NODE+="%{%B%}"
-  NIGIRI_MODULE_NODE+="%F{green}"
-  NIGIRI_MODULE_NODE+="⬢ "
-  NIGIRI_MODULE_NODE+="$node_version"
-  NIGIRI_MODULE_NODE+="%{%b%}"
+  NMODOUT_NODE=""
+  NMODOUT_GIT+="${NMOD_NODE_FORMAT//NODE/$node_version}"
+  NMODOUT_NODE+=" "
 
   nigiri::redraw
 }
