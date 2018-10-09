@@ -6,7 +6,7 @@
 > [spaceship-prompt](https://github.com/denysdovhan/spaceship-prompt/) and [pure](https://github.com/sindresorhus/pure).
 
 <div align="center">
-  <img width="752" height="514" src=".github/screenshot.png" alt="screenshot">
+  <img width="752" src=".github/screenshot.png" alt="screenshot">
 </div>
 
 # Install
@@ -38,6 +38,31 @@ NIGIRI_PROMPT_MODULES=(
   exit_status
 )
 ```
+
+Use the variable `NIGIRI_PS2` to set the PS2. It defaults to `%F{black}⣿%f  `.
+
+## git
+
+| Variable | Description | Default |
+| - | - | - |
+| **`NMOD_GIT_FORMAT`** | Format of the module's output, where `GIT` will be replaced with the whole output. | `%F{black}on%f GIT` |
+| **`NMOD_GIT_BRANCH_FORMAT`** | Format of the branch section, where `BRANCH` will be replaced with the branch name. | `%B%F{magenta}BRANCH%f%b` |
+| **`NMOD_GIT_AHEAD_FORMAT`** | Format for the number of ahead commits, where `NUM` will be replaced with the number. | `%B%F{red}⇡NUM%f%b` |
+| **`NMOD_GIT_BEHIND_FORMAT`** | Format for the number of behind commits, where `NUM` will be replaced with the number. | `%B%F{red}⇣NUM%f%b` |
+| **`NMOD_GIT_UNTRACKED`** | String to print for untracked files. | `%F{red}■%f` |
+| **`NMOD_GIT_CHANGED`** | String to print for changed files. | `%F{yellow}■%f` |
+| **`NMOD_GIT_STAGED`** | String to print for staged files. | `%F{blue}■%f` |
+| **`NMOD_GIT_DETACHED`** | String to print when HEAD is detached. | `%F{blue}■%f` |
+| **`NMOD_GIT_CLEAN`** | String to print when working tree is clean. | `%F{green}■%f` |
+| **`NMOD_GIT_MERGE`** | String to print while merging. | `%B%F{red}(merge)%f%b` |
+| **`NMOD_GIT_REBASE`** | String to print while rebasing. | `%B%F{red}(rebase)%f%b` |
+
+## node
+
+| Variable | Description | Default |
+| - | - | - |
+| **`NMOD_NODE_CMD`** | Command to run to get the current node version. | `nvm current` |
+| **`NMOD_NODE_FORMAT`** | Format of the module's output, where `NODE` will be replaced with the node version. | `%F{black}with%f %B%F{green}⬢ NODE%f%b` |
 
 # Add modules
 
