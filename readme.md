@@ -67,6 +67,8 @@ Use the variable `NIGIRI_PS2` to set the PS2. It defaults to `%F{black}⣿%f  `.
 
 ## `git`
 
+`git` shows the current branch and status of your working tree.
+
 | Variable | Description | Default |
 | - | - | - |
 | **`NMOD_GIT_FORMAT`** | Format of the module's output, where `GIT` will be replaced with the whole output. | `%F{black}on%f GIT` |
@@ -82,6 +84,8 @@ Use the variable `NIGIRI_PS2` to set the PS2. It defaults to `%F{black}⣿%f  `.
 | **`NMOD_GIT_REBASE`** | String to print while rebasing. | `%B%F{red}(rebase)%f%b` |
 
 ## `node`
+
+`node` shows the currently active node version.
 
 | Variable | Description | Default |
 | - | - | - |
