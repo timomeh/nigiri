@@ -118,7 +118,7 @@ Use the variable `NIGIRI_PS2` to set the PS2. It defaults to `%F{black}⣿%f  `.
 
 | Variable | Description | Default |
 | - | - | - |
-| **`NMOD_NODE_CMD`** | Command to run to get the current node version. | `nvm current` |
+| **`NMOD_NODE_CMD`** | Command to run to get the current node version. | `node --version` |
 | **`NMOD_NODE_FORMAT`** | Format of the module's output, where `NODE` will be replaced with the node version. | `%F{black}with%f %B%F{green}⬢ NODE%f%b` |
 
 ## `wild_nigiri`

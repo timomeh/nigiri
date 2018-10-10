@@ -1,44 +1,29 @@
-NMODOUT_NODE=""
-
-add-zsh-hook precmd nigiri_module::node:precmd
+NIGIRI_MODULE_NODE_OUTPUT=""
 add-zsh-hook preexec nigiri_module::node:preexec
 
 function nigiri_module::node() {
-  echo -n "$NMODOUT_NODE"
+  NIGIRI_MODULE_NODE_LASTDIR="$PWD"
+  echo -n "$NIGIRI_MODULE_NODE_OUTPUT"
 }
 
-function nigiri_module::node:precmd() {
-  async_job nigiri_node_worker nigiri_module::node:job $PWD
+function nigiri_module::node:update() {
+  NIGIRI_MODULE_NODE_OUTPUT="$1"
 }
 
 function nigiri_module::node:preexec() {
-  NMODOUT_NODE=""
+  NIGIRI_MODULE_NODE_OUTPUT=""
 }
 
-[[ -z "$NMOD_NODE_CMD" ]] && NMOD_NODE_CMD="nvm current"
+[[ -z "$NMOD_NODE_CMD" ]] && NMOD_NODE_CMD="node --version"
+[[ -z "$NMOD_NODE_FORMAT" ]] && NMOD_NODE_FORMAT="%F{black}with%f %B%F{green}⬢ NODE%f%b"
 function nigiri_module::node:job() {
-  local dir=$1
-
   # Check if we're inside a node project (search package.json x dirs up),
   # abort if not.
-  ! nigiri_module::node:find_package $dir > /dev/null 2>&1 && return 1
+  ! nigiri_module::node:find_package $PWD > /dev/null 2>&1 && return 1
 
-  echo -n "$(cd $dir && eval $NMOD_NODE_CMD)"
+  local result="$(eval $NMOD_NODE_CMD)"
+  echo -n "${NMOD_NODE_FORMAT//NODE/$result} "
   return 0
-}
-
-[[ -z "$NMOD_NODE_FORMAT" ]] && NMOD_NODE_FORMAT="%F{black}with%f %B%F{green}⬢ NODE%f%b"
-function nigiri_module::node:callback() {
-  local exitcode="$2"
-  [[ $exitcode -ne 0 ]] && return
-
-  local node_version="$3"
-
-  NMODOUT_NODE=""
-  NMODOUT_GIT+="${NMOD_NODE_FORMAT//NODE/$node_version}"
-  NMODOUT_NODE+=" "
-
-  nigiri::redraw
 }
 
 function nigiri_module::node:find_package() {
@@ -54,6 +39,3 @@ function nigiri_module::node:find_package() {
   done
   return 1
 }
-
-async_start_worker nigiri_node_worker -u -n
-async_register_callback nigiri_node_worker nigiri_module::node:callback
